@@ -14,23 +14,27 @@ const Home = () => {
             {id:3 , title : "Run Windows", description:"What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"},
             {id:4 , title : "Play CSGO", description:"Counter-Strike: Global Offensive is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment. It is the fourth game in the Counter-Strike series. Developed for over two years, Global Offensive was released for Windows, macOS, Xbox 360, and PlayStation 3 in August 2012, and for Linux"},
             
-        ] ;
-        
-        setTodos(toDos);
-       
+        ] ;        
+        setTodos(toDos);       
     }, []);
 
     const addInTodos = (todo) =>{
-        console.log(todo);
         setTodos([todo, ...todos]);
         setShowAddToDoModal(false);
+    }
+
+    const removeTodo = (id) => {
+        let remaining = todos.filter((todo) => todo.id != id);
+        setTodos(remaining);
     }
 
     const renderTodo = ({item}) => {
         return (
           <Card containerStyle={styles.cardContainer}>
-            <Card.Title style={styles.cardTitle}>{item.title}</Card.Title>
+            <Card.Title style={styles.cardTitle}>{item.title}     
+            </Card.Title>
             <Text style={styles.cardBody}>{item.description}</Text>
+            <Button title="Done" buttonStyle={styles.doneBtn} onPress={()=> removeTodo(item.id)} />
           </Card>
         );
     }
@@ -79,6 +83,10 @@ const styles = StyleSheet.create({
     },
     addBtn :{
         backgroundColor:"green"
+    },
+    doneBtn : {
+        marginTop:10,
+        backgroundColor : "silver"
     }
 });
 
