@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, FlatList, Modal } from 'react-native';
 import { Card, ListItem, Button, Icon, Tooltip, Input } from 'react-native-elements';
 import AddTodo from './addTodo';
+import { Ionicons } from '@expo/vector-icons';
 
 const Home = () => {
     const [todos, setTodos] = useState([]);
@@ -45,10 +46,15 @@ const Home = () => {
           animationType="slide"
           transparent={false}
           visible={showAddToDoModal}
-        >
+        >        
           <AddTodo setShowAddToDoModal={setShowAddToDoModal} addInTodos={addInTodos} />
         </Modal>
+
+       
         <Button
+        icon={
+          <Ionicons name="add-circle-outline" size={24} color="white" />
+            }
           buttonStyle={styles.addBtn}
           title="Add To DO"
           onPress={() => setShowAddToDoModal(true)}
